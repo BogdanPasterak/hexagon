@@ -14,7 +14,7 @@ import javax.swing.JPanel;
 class ShapePanel extends JPanel {
 
 	private Rectangle bound;
-	private Dimension dim = new Dimension(290, 252);
+	private Dimension dim = new Dimension(290, 253);
 	private final ArrayList<Hexagon> hexagons;
 
 	public ShapePanel() {

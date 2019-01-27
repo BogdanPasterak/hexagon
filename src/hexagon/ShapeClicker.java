@@ -1,59 +1,69 @@
 package hexagon;
 
 import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Container;
-import java.awt.Dimension;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.Paint;
-import java.awt.PaintContext;
-import java.awt.Polygon;
-import java.awt.Rectangle;
-import java.awt.RenderingHints;
-import java.awt.Shape;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.awt.geom.AffineTransform;
-import java.awt.geom.Ellipse2D;
-import java.awt.geom.Rectangle2D;
-import java.awt.image.ColorModel;
-import java.util.ArrayList;
+import java.awt.FlowLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.SwingUtilities;
+import javax.swing.JTextField;
 
-public class ShapeClicker {
+public class ShapeClicker extends JFrame implements ActionListener{
+
+    JButton s, l, r;
+    JTextField f;
+    int newField = 20;
 
     public ShapeClicker() {
-        JFrame frame = new JFrame();
-        frame.setTitle("Shape Clicker");
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        //frame.setResizable(false);
-
-        initComponents(frame);
-
-        frame.pack();
-        frame.setVisible(true);
+    	initComponents();
     }
 
     public static void main(String[] args) {
 
         //create frame and components on EDT
-        SwingUtilities.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                new ShapeClicker();
-            }
-        });
+        ShapeClicker frame = new ShapeClicker();
+        frame.setTitle("Shape Clicker");
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setResizable(false);
+        frame.pack();
+        frame.setVisible(true);
+        frame.pack();
+        
     }
 
-    private void initComponents(JFrame frame) {
-    	frame.setLayout(new BorderLayout());
-        frame.add(new ShapePanel(), BorderLayout.CENTER);
-        frame.add(new JButton("Save as..."), BorderLayout.SOUTH);
+    private void initComponents() {
+    	setLayout(new BorderLayout());
+        add(new ShapePanel(), BorderLayout.CENTER);
+        JPanel bottom = new JPanel(new FlowLayout());
+        add(bottom, BorderLayout.SOUTH);
+        bottom.add(s = new JButton("Save as..."));
+        bottom.add(l = new JButton("Left"));
+        bottom.add(r = new JButton("Right"));
+        bottom.add(f = new JTextField("55"));
+        s.addActionListener(this);
+        l.addActionListener(this);
+        r.addActionListener(this);
     }
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		int i = Integer.parseInt(f.getText());
+		if (e.getSource() == s) {
+			i = 30;
+		} else if (e.getSource() == l) {
+			i--;
+			if ( i < 0 )
+				i = newField;
+		} else if (e.getSource() == r) {
+			i++;
+			if ( i > newField )
+				i = 0;
+		}
+		f.setText( String.valueOf(i));
+	}
+
+
 }
 
