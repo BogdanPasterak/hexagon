@@ -4,6 +4,12 @@ import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -15,6 +21,8 @@ public class ShapeClicker extends JFrame implements ActionListener{
     JButton s, l, r;
     JTextField f;
     int newField = 20;
+    ArrayList<Integer[]> fills;
+    final String PATH = "fillsList.obj";
 
     public ShapeClicker() {
     	initComponents();
@@ -45,13 +53,37 @@ public class ShapeClicker extends JFrame implements ActionListener{
         s.addActionListener(this);
         l.addActionListener(this);
         r.addActionListener(this);
+        fills = loadList();
     }
 
+	private ArrayList<Integer[]> loadList() {
+		ArrayList<Integer[]> fills;
+
+		try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(PATH))) {
+			fills = (ArrayList<Integer[]>) ois.readObject();
+			System.out.println("List loaded");
+
+		} catch (IOException | ClassNotFoundException e) {
+			System.out.println(e.getMessage());
+			fills = new ArrayList<>();
+		}
+		
+		return fills;
+	}
+
+	private void saveList() {
+		try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(PATH))){
+			oos.writeObject(fills);
+			System.out.println("Save");
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+	}
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		int i = Integer.parseInt(f.getText());
 		if (e.getSource() == s) {
-			i = 30;
+			saveList();
 		} else if (e.getSource() == l) {
 			i--;
 			if ( i < 0 )
