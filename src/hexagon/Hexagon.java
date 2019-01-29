@@ -7,23 +7,21 @@ import java.awt.Polygon;
 
 public class Hexagon extends Polygon {
 	private Color frame, field;
-	private final int ID;
+	//private final int ID;
 	
 
-	public Hexagon(int i) {
-		super(xArray(i), yArray(i) , 6);
-		ID = i;
+	public Hexagon(int x, int y) {
+		super(xArray(x), yArray(y) , 6);
+		//ID = i;
 		frame = Color.BLACK;
 		field = Color.WHITE;
 	}
 
-	private static int[] xArray(int i) {
-		int x = (i % 8) * 34 + (( (i / 8) % 2 == 1) ? 17 : 0);
+	private static int[] xArray(int x) {
 		return new int[] { 0 + x, 0 + x, 17 + x, 34 + x, 34 + x, 17 + x };
 	}
 
-	private static int[] yArray(int i) {
-		int y = (i / 8) * 27;
+	private static int[] yArray(int y) {
 		return new int[] { 27 + y, 9 + y, 0 + y, 9 + y, 27 + y, 36 + y };
 	}
 	
@@ -43,10 +41,10 @@ public class Hexagon extends Polygon {
 		this.field = field;
 	}
 
-	public int getID() {
-		return ID;
-	}
-
+//	public int getID() {
+//		return ID;
+//	}
+//
 	public void turnColor() {
 		if (field.equals(Color.WHITE))
 			field = Color.GRAY;

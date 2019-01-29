@@ -46,7 +46,7 @@ public class ShapeClicker extends JFrame implements ActionListener{
         add(new ShapePanel(), BorderLayout.CENTER);
         JPanel bottom = new JPanel(new FlowLayout());
         add(bottom, BorderLayout.SOUTH);
-        bottom.add(s = new JButton("Save as..."));
+        bottom.add(s = new JButton("Save"));
         bottom.add(l = new JButton("Left"));
         bottom.add(r = new JButton("Right"));
         bottom.add(f = new JTextField("55"));

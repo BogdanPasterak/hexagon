@@ -15,25 +15,18 @@ class ShapePanel extends JPanel {
 
 	private Rectangle bound;
 	private Dimension dim = new Dimension(290, 253);
-	private final ArrayList<Hexagon> hexagons;
+	private final BattleFieldList battleField;
 
 	public ShapePanel() {
-		hexagons = new ArrayList<>();
-		for (int i = 0; i < 72; i++) {
-			hexagons.add(new Hexagon(i));
-		}
+		battleField = new BattleFieldList();
 
 		addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent me) {
 				super.mouseClicked(me);
-				for (Hexagon h : hexagons) {
+				for (Hexagon h : battleField) {
 
 					if (h.contains(me.getPoint())) {
-						// check if mouse is clicked within shape
-						// we can either just print out the object class name
-//                      System.out.println("Clicked a hexagon " + h.getID() +
-//                      		"   Color " + h.getField());
 						h.turnColor();
 						bound = h.getBounds();
 						update(getGraphics());
@@ -53,7 +46,7 @@ class ShapePanel extends JPanel {
 	protected void paintComponent(Graphics grphcs) {
 		super.paintComponent(grphcs);
 		Graphics2D g2d = (Graphics2D) grphcs;
-		for (Hexagon h : hexagons) {
+		for (Hexagon h : battleField) {
 			g2d.setPaint(h.getField());
 			g2d.fill(h);
 			g2d.setPaint(h.getFrame());
