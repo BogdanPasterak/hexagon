@@ -20,14 +20,14 @@ public class Hexagon extends Polygon {
 		if (horizontal)
 			return new int[] { 0 + x, 0 + x, 17 + x, 34 + x, 34 + x, 17 + x };
 		else
-			return new int[] { 0 + x, 9 + x, 27 + x, 36 + x, 27 + x, 9 + x };
+			return new int[] { 0 + x, 7 + x, 21 + x, 28 + x, 21 + x, 6 + x };
 	}
 
 	private static int[] yArray(int y, boolean horizontal) {
 		if (horizontal)
 			return new int[] { 27 + y, 9 + y, 0 + y, 9 + y, 27 + y, 36 + y };
 		else
-			return new int[] { 17 + y, 0 + y, 0 + y, 17 + y, 34 + y, 34 + y };
+			return new int[] { 12 + y, 0 + y, 0 + y, 12 + y, 24 + y, 24 + y };
 
 	}
 

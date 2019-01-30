@@ -14,17 +14,17 @@ import javax.swing.JPanel;
 class ShapePanel extends JPanel {
 
 	private Rectangle bound;
-	private Dimension dim = new Dimension(290, 253);
-	private final BattleFieldList battleField;
+	private Dimension dim = new Dimension(800, 860);
+	private final MapList mapList;
 
 	public ShapePanel() {
-		battleField = new BattleFieldList();
+		mapList = new MapList();
 
 		addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent me) {
 				super.mouseClicked(me);
-				for (Hexagon h : battleField) {
+				for (Hexagon h : mapList) {
 
 					if (h.contains(me.getPoint())) {
 						h.turnColor();
@@ -46,7 +46,7 @@ class ShapePanel extends JPanel {
 	protected void paintComponent(Graphics grphcs) {
 		super.paintComponent(grphcs);
 		Graphics2D g2d = (Graphics2D) grphcs;
-		for (Hexagon h : battleField) {
+		for (Hexagon h : mapList) {
 			g2d.setPaint(h.getField());
 			g2d.fill(h);
 			g2d.setPaint(h.getFrame());

@@ -34,7 +34,7 @@ public class ShapeClicker extends JFrame implements ActionListener{
         ShapeClicker frame = new ShapeClicker();
         frame.setTitle("Shape Clicker");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setResizable(false);
+        //frame.setResizable(false);
         frame.pack();
         frame.setVisible(true);
         frame.pack();
