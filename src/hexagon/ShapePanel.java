@@ -1,5 +1,6 @@
 package hexagon;
 
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -16,9 +17,11 @@ class ShapePanel extends JPanel {
 	private Rectangle bound;
 	private Dimension dim = new Dimension(800, 860);
 	private final MapList mapList;
+	public Color colorToFill;
 
 	public ShapePanel() {
 		mapList = new MapList();
+		colorToFill = Color.GRAY;
 
 		addMouseListener(new MouseAdapter() {
 			@Override
@@ -27,7 +30,7 @@ class ShapePanel extends JPanel {
 				for (Hexagon h : mapList) {
 
 					if (h.contains(me.getPoint())) {
-						h.turnColor();
+						h.setField(colorToFill);
 						bound = h.getBounds();
 						update(getGraphics());
 					}

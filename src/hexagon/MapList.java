@@ -16,6 +16,10 @@ public class MapList extends ArrayList<Hexagon> {
 				Hexagon me = new Hexagon(x, y, false);
 				me.setField(Color.BLACK);
 				add(me);
+			} else if (i == 681) {
+				Hexagon me = new Hexagon(x, y, false);
+				me.setField(Color.PINK);
+				add(me);
 			} else
 				add(new Hexagon(x, y, false));
 		}
