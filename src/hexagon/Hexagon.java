@@ -4,8 +4,13 @@ import java.awt.Color;
 import java.awt.PaintContext;
 import java.awt.Point;
 import java.awt.Polygon;
+import java.io.Serializable;
 
-public class Hexagon extends Polygon {
+public class Hexagon extends Polygon implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private Color frame, field;
 	// private final int ID;
 
@@ -44,7 +49,8 @@ public class Hexagon extends Polygon {
 	}
 
 	public void setField(Color field) {
-		this.field = field;
+		if (this.field != Color.LIGHT_GRAY && this.field != Color.BLACK)
+			this.field = field;
 	}
 
 //	public int getID() {

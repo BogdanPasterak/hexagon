@@ -16,8 +16,8 @@ class ShapePanel extends JPanel {
 
 	private Rectangle bound;
 	private Dimension dim = new Dimension(800, 860);
-	private final MapList mapList;
-	public Color colorToFill;
+	private MapList mapList;
+	private Color colorToFill;
 
 	public ShapePanel() {
 		mapList = new MapList();
@@ -33,6 +33,8 @@ class ShapePanel extends JPanel {
 						h.setField(colorToFill);
 						bound = h.getBounds();
 						update(getGraphics());
+						int index = mapList.indexOf(h);
+						System.out.printf("a = %d    b = %d   i = %d%n", index % 35 - 17, index / 35 - 18, index);
 					}
 				}
 			}
@@ -60,5 +62,20 @@ class ShapePanel extends JPanel {
 	@Override
 	public Dimension getPreferredSize() {
 		return dim;
+	}
+
+	public MapList getMap() {
+		return mapList;
+	}
+	public void setMap(MapList map) {
+		mapList = map;
+	}
+
+	public Color getColorToFill() {
+		return colorToFill;
+	}
+
+	public void setColorToFill(Color colorToFill) {
+		this.colorToFill = colorToFill;
 	}
 }

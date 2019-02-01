@@ -1,10 +1,12 @@
 package hexagon;
 
 import java.awt.Color;
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class MapList extends ArrayList<Hexagon> {
-	
+public class MapList extends ArrayList<Hexagon> implements Serializable{
+	private static final long serialVersionUID = 1L;
+
 	public MapList() {
 		super();
 		int x, y;
@@ -16,9 +18,9 @@ public class MapList extends ArrayList<Hexagon> {
 				Hexagon me = new Hexagon(x, y, false);
 				me.setField(Color.BLACK);
 				add(me);
-			} else if (i == 681) {
+			} else if ((i + 1) % 3 == (i / 70) % 3){
 				Hexagon me = new Hexagon(x, y, false);
-				me.setField(Color.PINK);
+				me.setField(Color.LIGHT_GRAY);
 				add(me);
 			} else
 				add(new Hexagon(x, y, false));

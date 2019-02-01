@@ -3,6 +3,7 @@ package hexagon;
 import java.util.ArrayList;
 
 public class BattleFieldList extends ArrayList<Hexagon> {
+	private static final long serialVersionUID = 1L;
 
 	public BattleFieldList() {
 		super();
