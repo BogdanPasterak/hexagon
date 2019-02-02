@@ -21,7 +21,8 @@ import javax.swing.JTextField;
 
 public class ShapeClicker extends JFrame implements ActionListener{
 
-    JButton c, s, l, r;
+	private static final long serialVersionUID = 1L;
+	JButton c, s, l, r, e;
     JTextField f;
     ShapePanel shapePanel;
     Color[] material = {Color.decode("#f2ebcd"), Color.decode("#5b7c88"), Color.decode("#ca8b00"),
@@ -57,6 +58,7 @@ public class ShapeClicker extends JFrame implements ActionListener{
         JPanel bottom = new JPanel(new FlowLayout());
         add(bottom, BorderLayout.SOUTH);
         bottom.add(c = new JButton(mat[0]));
+        bottom.add(e = new JButton("Edit"));
         bottom.add(s = new JButton("Save"));
         bottom.add(l = new JButton("Left"));
         bottom.add(r = new JButton("Right"));

@@ -49,7 +49,7 @@ public class Hexagon extends Polygon implements Serializable {
 	}
 
 	public void setField(Color field) {
-		if (this.field != Color.LIGHT_GRAY && this.field != Color.BLACK)
+		if ( ! this.field.equals(Color.LIGHT_GRAY) && ! this.field.equals(Color.BLACK))
 			this.field = field;
 	}
 
