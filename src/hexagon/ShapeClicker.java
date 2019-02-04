@@ -23,13 +23,13 @@ public class ShapeClicker extends JFrame implements ActionListener{
 
 	private static final long serialVersionUID = 1L;
 	JButton c, s, l, r, e;
+	JButton[] bMat;
     JTextField f;
     ShapePanel shapePanel;
     Color[] material = {Color.decode("#f2ebcd"), Color.decode("#5b7c88"), Color.decode("#ca8b00"),
     					Color.decode("#65e7ee"), Color.decode("#d3b06d"), Color.decode("#f9d400"),
     					Color.decode("#bb3625"), Color.decode("#c038bc"), Color.decode("#c22574")};
-    String[] mat = {"  Marmur  ","     Stal     ","  Drewno  "," Krysztal ","  Zwoje    ","  Jedwab  ",
-    				"  Eliksyr   ","      Pyl     ","Klejnoty "};
+    String[] mat = {"Mar","Sta","Dre","Kry","Zwo","Jed","Eli","Pyl","Kle"};
     int newField = 20;
     ArrayList<Integer[]> fills;
     final String PATH = "fillsList.obj";
@@ -57,6 +57,13 @@ public class ShapeClicker extends JFrame implements ActionListener{
         add(shapePanel, BorderLayout.CENTER);
         JPanel bottom = new JPanel(new FlowLayout());
         add(bottom, BorderLayout.SOUTH);
+        bMat = new JButton[9];
+        for (int i = 0; i < 9; i++) {
+			bMat[i] = new JButton(String.valueOf(i));
+			bMat[i].setBackground(material[i]);
+			bMat[i].addActionListener(this);
+			bottom.add(bMat[i]);
+		}
         bottom.add(c = new JButton(mat[0]));
         bottom.add(e = new JButton("Edit"));
         bottom.add(s = new JButton("Save"));
@@ -115,6 +122,10 @@ public class ShapeClicker extends JFrame implements ActionListener{
 			shapePanel.setColorToFill(material[colorNr]);
 			c.setText(mat[colorNr]);
 			//System.out.println(colorNr);
+		} else if (Arrays.asList(bMat).contains(e.getSource())) {
+			int cur = Arrays.asList(bMat).indexOf(e.getSource());
+			c.setBackground(material[cur]);
+			c.setText(mat[cur]);
 		}
 		f.setText( String.valueOf(i));
 	}
